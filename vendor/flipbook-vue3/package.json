@@ -1,0 +1,56 @@
+{
+  "name": "@gladesinger/flipbook-vue3",
+  "private": false,
+  "version": "1.0.1",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/flipbook-vue3.umd.cjs",
+  "module": "./dist/flipbook-vue3.js",
+  "types": "./dist/lib/main.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/lib/main.d.ts",
+      "import": "./dist/flipbook-vue3.js",
+      "require": "./dist/flipbook-vue3.umd.cjs"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && vue-tsc --emitDeclarationOnly",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gladesinger/flipbook-vue3.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "keywords": [
+    "Flipbook",
+    "Flipbook-vue",
+    "Flipbook-vue3",
+    "Vue",
+    "Vue3",
+    "Nuxt"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "rematrix": "^0.7.2"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "typescript": "~5.6.2",
+    "vite": "^5.4.10",
+    "vue": "^3.5.12",
+    "vue-tsc": "^2.1.8"
+  }
+}
