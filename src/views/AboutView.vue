@@ -97,7 +97,7 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
-  font-size: clamp(0.9rem, 0.8rem + 0.4vw, 1.05rem);
+  font-size: clamp(0.9rem, 0.8rem + 0.4vmin, 1.05rem);
 }
 
 .about__text p {
@@ -105,7 +105,7 @@
 }
 
 .about__caption {
-  font-size: clamp(0.75rem, 0.65rem + 0.3vw, 0.9rem);
+  font-size: clamp(0.75rem, 0.65rem + 0.3vmin, 0.9rem);
   text-align: right;
   margin: 1.5rem 0 0;
   overflow-wrap: break-word;

@@ -116,20 +116,18 @@ function onKeydown(e: KeyboardEvent) {
 
 .flipbook-wrapper {
   position: relative;
-  width: 100%;
-  max-width: 1600px;
+  width: min(100%, 92vh * (486 / 477), 1600px);
   margin: 0 auto;
 }
 
 .flipbook {
   width: 100%;
-  max-height: 92vh;
   margin: 0 auto;
   outline: none;
 }
 
 .gallery-view__caption {
-  font-size: clamp(0.75rem, 0.65rem + 0.3vw, 0.9rem);
+  font-size: clamp(0.75rem, 0.65rem + 0.3vmin, 0.9rem);
   text-align: right;
   max-width: 1600px;
   margin: 1rem auto 0;
