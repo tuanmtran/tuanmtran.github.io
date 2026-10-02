@@ -8,6 +8,23 @@ import { getGallery } from '../data/galleries'
 const route = useRoute()
 const gallery = computed(() => getGallery(route.params.slug as string))
 
+// The flipbook renders a two-page spread on wide viewports, so the container
+// needs double the single-page width to avoid being shrunk down with empty
+// vertical margins.
+const spreadAspectRatio = computed(() => {
+  const ratio = gallery.value?.aspectRatio
+  if (!ratio) return undefined
+  const [w, h] = ratio.split('/').map((n) => parseFloat(n.trim()))
+  return `${w * 2} / ${h}`
+})
+
+const spreadRatioNumber = computed(() => {
+  const ratio = gallery.value?.aspectRatio
+  if (!ratio) return 2
+  const [w, h] = ratio.split('/').map((n) => parseFloat(n.trim()))
+  return (w * 2) / h
+})
+
 const flipbook = ref<InstanceType<typeof FlipBook> | null>(null)
 const showHint = ref(true)
 
@@ -34,14 +51,14 @@ function onKeydown(e: KeyboardEvent) {
     </header>
 
     <template v-if="gallery">
-      <div class="flipbook-wrapper">
+      <div class="flipbook-wrapper" :style="{ width: `min(100%, 92vh * ${spreadRatioNumber}, 1600px)` }">
         <FlipBook
           ref="flipbook"
           :pages="gallery.pages"
           :zooms="[1]"
           :click-to-zoom="false"
           class="flipbook"
-          :style="{ aspectRatio: gallery.aspectRatio }"
+          :style="{ aspectRatio: spreadAspectRatio }"
           tabindex="0"
           @keydown="
             onKeydown($event);
@@ -51,12 +68,14 @@ function onKeydown(e: KeyboardEvent) {
           @flip-left-start="dismissHint"
           @flip-right-start="dismissHint"
         />
+      </div>
+      <div class="flipbook-hint-slot">
         <Transition name="fade">
-          <div v-if="showHint" class="flipbook-hint" aria-hidden="true">
+          <p v-if="showHint" class="flipbook-hint" aria-hidden="true">
             <span class="flipbook-hint__arrow">&larr;</span>
             <span>Click, swipe, or use arrow keys to flip</span>
             <span class="flipbook-hint__arrow">&rarr;</span>
-          </div>
+          </p>
         </Transition>
       </div>
       <p class="gallery-view__caption">
@@ -80,7 +99,7 @@ function onKeydown(e: KeyboardEvent) {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: #fdfdfd;
+  background: #f4f4f2;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -116,8 +135,8 @@ function onKeydown(e: KeyboardEvent) {
 
 .flipbook-wrapper {
   position: relative;
-  width: min(100%, 92vh * (486 / 477), 1600px);
-  margin: 0 auto;
+  max-width: 1600px;
+  margin: 2rem auto;
 }
 
 .flipbook {
@@ -134,14 +153,17 @@ function onKeydown(e: KeyboardEvent) {
   overflow-wrap: break-word;
 }
 
-.flipbook-hint {
-  position: absolute;
-  left: 50%;
-  bottom: 1.5rem;
-  transform: translateX(-50%);
+.flipbook-hint-slot {
   display: flex;
+  justify-content: center;
+  height: 2.25rem;
+}
+
+.flipbook-hint {
+  display: inline-flex;
   align-items: center;
   gap: 0.75rem;
+  margin: 0;
   padding: 0.5rem 1rem;
   background: rgba(0, 0, 0, 0.65);
   color: #fff;
@@ -149,7 +171,6 @@ function onKeydown(e: KeyboardEvent) {
   font-size: 0.85rem;
   white-space: nowrap;
   pointer-events: none;
-  z-index: 10;
 }
 
 .flipbook-hint__arrow {

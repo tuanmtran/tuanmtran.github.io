@@ -41,7 +41,7 @@ import { galleries } from '../data/galleries'
   position: sticky;
   top: 0;
   z-index: 10;
-  background: #fdfdfd;
+  background: #f4f4f2;
   padding: 2rem 0 1.5rem;
   margin-bottom: 0.5rem;
 }
