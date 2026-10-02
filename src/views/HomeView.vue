@@ -5,8 +5,11 @@ import { galleries } from '../data/galleries'
 <template>
   <main class="home">
     <header class="home__header">
-      <h1>Tony Portfolio</h1>
-      <p>A collection of flipbook-style photo galleries made by me, consist exclusively of my film photos.</p>
+      <div class="home__header-row">
+        <h1>Digial photobooks</h1>
+        <RouterLink to="/about" class="home__about-link">README.md</RouterLink>
+      </div>
+      <p>A collection of photobooks made by me, consist exclusively of my film photos. Now digitalized for free online viewing!</p>
     </header>
 
     <ul class="gallery-grid">
@@ -29,19 +32,47 @@ import { galleries } from '../data/galleries'
 <style scoped>
 .home {
   width: 100%;
-  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
 }
 
 .home__header {
-  margin-bottom: 2.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #ffffff;
+  padding: 2rem 0 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.home__header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.home__header h1 {
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.home__header p {
+  margin: 0.75rem 0 1.5rem;
+  max-width: 640px;
+}
+
+.home__about-link {
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .gallery-grid {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 160px));
-  justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem;
   padding: 0;
   margin: 0;
 }
@@ -55,14 +86,14 @@ import { galleries } from '../data/galleries'
 .gallery-card__cover {
   width: 100%;
   object-fit: contain;
-  background: #111;
-  border-radius: 6px;
+  background: #b1b2b5;
+  border-radius: 4px;
   transition: transform 0.2s ease;
 }
 
 .gallery-card h2 {
   font-size: 1rem;
-  margin: 0.5rem 0 0.25rem;
+  margin-top: 0.05rem 0 0;
 }
 
 .gallery-card p {
