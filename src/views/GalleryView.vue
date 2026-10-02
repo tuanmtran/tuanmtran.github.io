@@ -80,7 +80,7 @@ function onKeydown(e: KeyboardEvent) {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: #ffffff;
+  background: #fdfdfd;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -92,6 +92,16 @@ function onKeydown(e: KeyboardEvent) {
 .gallery-view__header h1 {
   font-size: 1.75rem;
   margin: 0;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+  .gallery-view__header h1 {
+    font-size: 1.25rem;
+  }
 }
 
 .gallery-view__close {
@@ -119,10 +129,11 @@ function onKeydown(e: KeyboardEvent) {
 }
 
 .gallery-view__caption {
-  font-size: 0.85em;
+  font-size: clamp(0.75rem, 0.65rem + 0.3vw, 0.9rem);
   text-align: right;
   max-width: 1600px;
   margin: 1rem auto 0;
+  overflow-wrap: break-word;
 }
 
 .flipbook-hint {

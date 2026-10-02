@@ -48,7 +48,7 @@
   position: sticky;
   top: 0;
   z-index: 10;
-  background: #ffffff;
+  background: #fdfdfd;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -59,6 +59,10 @@
 .about__title {
   font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
   margin: 0;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .about__close {
@@ -101,9 +105,10 @@
 }
 
 .about__caption {
-  font-size: 0.85rem;
+  font-size: clamp(0.75rem, 0.65rem + 0.3vw, 0.9rem);
   text-align: right;
   margin: 1.5rem 0 0;
+  overflow-wrap: break-word;
 }
 
 @media (min-width: 640px) {

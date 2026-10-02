@@ -6,7 +6,7 @@ import { galleries } from '../data/galleries'
   <main class="home">
     <header class="home__header">
       <div class="home__header-row">
-        <h1>Digial photobooks</h1>
+        <h1>Digital photobooks</h1>
         <RouterLink to="/about" class="home__about-link">README.md</RouterLink>
       </div>
       <p>A collection of photobooks made by me, consist exclusively of my film photos. Now digitalized for free online viewing!</p>
@@ -41,7 +41,7 @@ import { galleries } from '../data/galleries'
   position: sticky;
   top: 0;
   z-index: 10;
-  background: #ffffff;
+  background: #fdfdfd;
   padding: 2rem 0 1.5rem;
   margin-bottom: 0.5rem;
 }
@@ -56,6 +56,16 @@ import { galleries } from '../data/galleries'
 .home__header h1 {
   font-size: 1.75rem;
   margin: 0;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+  .home__header h1 {
+    font-size: 1.25rem;
+  }
 }
 
 .home__header p {
